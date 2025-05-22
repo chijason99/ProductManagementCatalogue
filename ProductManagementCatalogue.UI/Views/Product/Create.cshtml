@@ -1,0 +1,48 @@
+﻿@model ProductManagementCatalogue.Application.Dtos.Products.CreateProductDto
+
+<h1>Create New Product</h1>
+
+<h4>Enter Product Details</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control required" placeholder="Enter product name" maxlength="250" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control required" rows="3" placeholder="Enter product description" maxlength="250"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Price" class="form-label"></label>
+                <input asp-for="Price" type="number" step="0.01" class="form-control required" placeholder="0.00" min="0" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Stock" class="form-label"></label>
+                <input asp-for="Stock" type="number" class="form-control required" placeholder="0" min="0" />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="IsActive" type="checkbox" class="form-check-input" checked />
+                <label asp-for="IsActive" class="form-check-label"></label>
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success">Create Product</button>
+                <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

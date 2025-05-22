@@ -20,7 +20,7 @@ public class Product
 		if (price <= 0) 
 			errors.Add("Price must be a positive value.");
 
-		if (stock <= 0)
+		if (stock < 0)
 			errors.Add("Stock must be a positive value.");
 
 		if (errors.Any())

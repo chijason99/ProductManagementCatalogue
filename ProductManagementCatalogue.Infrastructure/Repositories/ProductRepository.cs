@@ -34,18 +34,12 @@ public class ProductRepository(ProductDbContext productDbContext) : IRepository<
 		return product;
 	}
 
-	public async Task<Product[]> QueryAsync(
-		Expression<Func<Product, bool>> predicate, 
-		int pageNumber = 1, 
-		int pageSize = 10,
-		CancellationToken cancellationToken = default)
+	public IQueryable<Product> Query(Expression<Func<Product, bool>> predicate)
 	{
-		var result = await _context.Products
+		var result = _context.Products
 			.AsNoTracking()
-			.Where(predicate)
-			.Skip(pageSize * (pageNumber - 1))
-			.Take(pageSize)
-			.ToArrayAsync(cancellationToken);
+			.AsQueryable()
+			.Where(predicate);
 
 		return result;
 	}

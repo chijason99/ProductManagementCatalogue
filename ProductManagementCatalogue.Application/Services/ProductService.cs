@@ -1,4 +1,5 @@
 ﻿using LinqKit;
+using Microsoft.EntityFrameworkCore;
 using ProductManagementCatalogue.Application.Dtos.Products;
 using ProductManagementCatalogue.Application.Dtos.Shared;
 using ProductManagementCatalogue.Domain.Products;
@@ -105,21 +106,27 @@ public class ProductService(IRepository<Product> productRepository, IUnitOfWork 
 
 		var searchPredicate = BuildProduceSearchClause(filter);
 
-		var products = await _productRepository.QueryAsync(searchPredicate, pageNumber, pageSize, cancellationToken);
+		var products = _productRepository.Query(searchPredicate);
 
-		var productDtos = products.Select(p => new ProductDto
-		{
-			Id = p.Id,
-			Name = p.Name,
-			Description = p.Description,
-			Price = p.Price,
-			Stock = p.Stock,
-			IsActive = p.IsActive
-		}).ToList();
+		int totalCount = await products.CountAsync(cancellationToken);
+
+		var productDtos = await products
+			.Skip(pageSize * (pageNumber - 1))
+			.Take(pageSize)
+			.Select(p => new ProductDto
+			{
+				Id = p.Id,
+				Name = p.Name,
+				Description = p.Description,
+				Price = p.Price,
+				Stock = p.Stock,
+				IsActive = p.IsActive
+			})
+			.ToListAsync(cancellationToken);
 
 		var pagedResult = PagedResult<ProductDto>.Create(
 			productDtos, 
-			totalItems: products.Length,
+			totalItems: totalCount,
 			pageNumber, 
 			pageSize);
 

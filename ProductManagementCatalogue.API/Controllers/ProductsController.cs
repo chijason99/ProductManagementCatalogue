@@ -23,4 +23,17 @@ public class ProductsController(IProductService productService) : ControllerBase
 
 		return Created();
 	}
+
+	[HttpGet("{id:int}")]
+	[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductDto))]
+	[ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+	public async Task<IActionResult> GetAsync(int id, CancellationToken cancellationToken = default)
+	{
+		Result<ProductDto> getProductResult = await _productService.GetProductAsync(id, cancellationToken);
+
+		if (getProductResult.IsFailure)
+			return BadRequest();
+
+		return Ok(getProductResult.Value);
+	}
 }

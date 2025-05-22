@@ -39,4 +39,24 @@ public class ProductService(IRepository<Product> productRepository, IUnitOfWork 
 
 		return Result<ProductDto>.Success(dto);
 	}
+
+	public async Task<Result<ProductDto>> GetProductAsync(int id, CancellationToken cancellationToken = default)
+	{
+		Product targetProduct = await _productRepository.GetByIdAsync(id, cancellationToken);
+
+		if (targetProduct is null)
+			return Result<ProductDto>.Failure($"Product not found");
+
+		ProductDto dto = new()
+		{
+			Id = targetProduct.Id,
+			Name = targetProduct.Name,
+			Description = targetProduct.Description,
+			Price = targetProduct.Price,
+			Stock = targetProduct.Stock,
+			IsActive = targetProduct.IsActive
+		};
+
+		return Result<ProductDto>.Success(dto);
+	}
 }

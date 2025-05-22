@@ -7,4 +7,6 @@ namespace ProductManagementCatalogue.Application.Services;
 public interface IProductService
 {
 	Task<Result<ProductDto>> CreateProductAsync(CreateProductDto createProductDto, CancellationToken cancellationToken = default);
+
+	Task<Result<ProductDto>> GetProductAsync(int id, CancellationToken cancellationToken = default);
 }

@@ -1,6 +1,16 @@
-@ProductManagementCatalogue.UI_HostAddress = http://localhost:5069
+@ProductManagementCatalogue.API_HostAddress = http://localhost:5069
 
-GET {{ProductManagementCatalogue.UI_HostAddress}}/weatherforecast/
+GET {{ProductManagementCatalogue.API_HostAddress}}/products/
 Accept: application/json
 
 ###
+POST {{ProductManagementCatalogue.API_HostAddress}}/products
+Content-Type: application/json
+Accept: application/json
+{
+  "name": "Sample Product",
+  "description": "A sample product for testing.",
+  "price": 19.99,
+  "stock": 100,
+  "isActive": true
+}

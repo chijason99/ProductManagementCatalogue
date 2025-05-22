@@ -16,7 +16,7 @@ This solution includes a Web API, an MVC UI, and a shared domain/application lay
 ### Getting Started
 
 1. **Clone the repository:**
-   git clone <your-repo-url> cd ProductManagementCatalogue
+   git clone https://github.com/chijason99/ProductManagementCatalogue cd ProductManagementCatalogue
    
 2. **Configure the database:**
    - The solution uses SQLite. The connection string is set in `appsettings.json` for both API and UI projects.

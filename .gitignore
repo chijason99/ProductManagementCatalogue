@@ -482,3 +482,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/ProductManagementCatalogue.API/ProductManagementCatalogue.db
+/ProductManagementCatalogue.API/ProductManagementCatalogue.db-shm
+/ProductManagementCatalogue.API/ProductManagementCatalogue.db-wal

@@ -65,7 +65,7 @@ public class ProductService(IRepository<Product> productRepository, IUnitOfWork 
 		Product targetProduct = await _productRepository.GetByIdAsync(id, cancellationToken);
 
 		if (targetProduct is null)
-			return Result<ProductDto>.Failure($"Product not found");
+			return Result.Failure($"Product not found");
 
 		targetProduct.UpdateDetails(
 			updateProductDto.Name,
@@ -75,6 +75,19 @@ public class ProductService(IRepository<Product> productRepository, IUnitOfWork 
 			updateProductDto.IsActive);
 
 		await _productRepository.UpdateAsync(targetProduct, cancellationToken);
+		await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+		return Result.Success();
+	}
+
+	public async Task<Result> DeleteProductAsync(int id, CancellationToken cancellationToken = default)
+	{
+		Product targetProduct = await _productRepository.GetByIdAsync(id, cancellationToken);
+
+		if (targetProduct is null)
+			return Result.Failure($"Product not found");
+
+		await _productRepository.DeleteAsync(targetProduct, cancellationToken);
 		await _unitOfWork.SaveChangesAsync(cancellationToken);
 
 		return Result.Success();

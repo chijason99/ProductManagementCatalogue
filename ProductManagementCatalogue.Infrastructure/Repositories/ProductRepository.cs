@@ -14,11 +14,11 @@ public class ProductRepository(ProductDbContext productDbContext) : IRepository<
 		await _context.Set<Product>().AddAsync(entity, cancellationToken);
 	}
 
-	public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
+	public Task DeleteAsync(Product entity, CancellationToken cancellationToken = default)
 	{
-		Product entity = await GetByIdAsync(id, cancellationToken);
-
 		_context.Set<Product>().Remove(entity);
+
+		return Task.CompletedTask;
 	}
 
 	public Task<IEnumerable<Product>> GetAllAsync(CancellationToken cancellationToken = default)

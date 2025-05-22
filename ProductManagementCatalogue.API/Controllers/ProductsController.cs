@@ -52,7 +52,28 @@ public class ProductsController(IProductService productService) : ControllerBase
 
 		if (updateProductResult.IsFailure)
 		{
-			if (updateProductResult.Errors.Any(err => err.Contains("Not Found")))
+			if (updateProductResult.Errors.Any(err => err.Contains("not found")))
+				return NotFound();
+
+			return BadRequest();
+		}
+
+		return NoContent();
+	}
+
+	[HttpDelete("{id:int}")]
+	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IEnumerable<string>))]
+	public async Task<IActionResult> DeleteAsync(
+		int id,
+		CancellationToken cancellationToken = default)
+	{
+		Result updateProductResult = await _productService.DeleteProductAsync(id, cancellationToken);
+
+		if (updateProductResult.IsFailure)
+		{
+			if (updateProductResult.Errors.Any(err => err.Contains("not found")))
 				return NotFound();
 
 			return BadRequest();

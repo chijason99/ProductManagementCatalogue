@@ -6,15 +6,15 @@ namespace ProductManagementCatalogue.Application.Dtos.Products;
 public record CreateProductDto
 {
 	[JsonPropertyName("name")]
-	[Required, StringLength(250, MinimumLength = 0)]
+	[Required, MaxLength(250)]
 	public string Name { get; init; }
 
 	[JsonPropertyName("description")]
-	[Required, StringLength(250, MinimumLength = 0)]
+	[Required, MaxLength(1000)]
 	public string Description { get; init; }
 
 	[JsonPropertyName("price")]
-	[Required, Range(0, (double)int.MaxValue)]
+	[Required, Range(0.01, int.MaxValue)]
 	public decimal Price { get; init; }
 
 	[JsonPropertyName("stock")]

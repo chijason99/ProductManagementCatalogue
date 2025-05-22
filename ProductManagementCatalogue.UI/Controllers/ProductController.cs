@@ -88,7 +88,7 @@ public class ProductController(IProductService productService) : Controller
 
 	[HttpPost("[action]")]
 	[ValidateAntiForgeryToken]
-	public async Task<IActionResult> Update(int id, ProductDto productDto, CancellationToken cancellationToken)
+	public async Task<IActionResult> UpdateProductAsync(int id, ProductDto productDto, CancellationToken cancellationToken)
 	{
 		if (!ModelState.IsValid)
 			return View(productDto);

@@ -4,11 +4,10 @@ namespace ProductManagementCatalogue.Application.Dtos.Products;
 
 public class UpdateProductDto
 {
-	[Required]
-	[StringLength(100)]
+	[Required, MaxLength(250)]
 	public string Name { get; set; }
 
-	[Required]
+	[Required, MaxLength(1000)]
 	public string Description { get; set; }
 
 	[Range(0.01, int.MaxValue)]

@@ -8,7 +8,7 @@ public interface IRepository<T>
 
 	Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
 
-	Task<IEnumerable<T>> QueryAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
+	Task<T[]> QueryAsync(Expression<Func<T, bool>> predicate, int pageSize = 10, int pageNumber = 1, CancellationToken cancellationToken = default);
 
 	Task AddAsync(T entity, CancellationToken cancellationToken = default);
 

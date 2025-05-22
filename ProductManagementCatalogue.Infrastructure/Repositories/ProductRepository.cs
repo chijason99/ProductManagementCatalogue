@@ -1,4 +1,5 @@
-﻿using ProductManagementCatalogue.Domain.Products;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductManagementCatalogue.Domain.Products;
 using ProductManagementCatalogue.Domain.Shared.Interfaces;
 using ProductManagementCatalogue.Infrastructure.DbContexts;
 using System.Linq.Expressions;
@@ -33,9 +34,20 @@ public class ProductRepository(ProductDbContext productDbContext) : IRepository<
 		return product;
 	}
 
-	public Task<IEnumerable<Product>> QueryAsync(Expression<Func<Product, bool>> predicate, CancellationToken cancellationToken = default)
+	public async Task<Product[]> QueryAsync(
+		Expression<Func<Product, bool>> predicate, 
+		int pageNumber = 1, 
+		int pageSize = 10,
+		CancellationToken cancellationToken = default)
 	{
-		throw new NotImplementedException();
+		var result = await _context.Products
+			.AsNoTracking()
+			.Where(predicate)
+			.Skip(pageSize * (pageNumber - 1))
+			.Take(pageSize)
+			.ToArrayAsync(cancellationToken);
+
+		return result;
 	}
 
 	public Task UpdateAsync(Product entity, CancellationToken cancellationToken = default)

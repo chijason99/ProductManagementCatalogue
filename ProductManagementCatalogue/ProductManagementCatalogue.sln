@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagementCatalogue.Domain", "ProductManagementCatalogue.Domain.csproj", "{528883D9-731B-46CB-9795-D6B0C7C4468A}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagementCatalogue.API", "..\ProductManagementCatalogue.API\ProductManagementCatalogue.API.csproj", "{3B8AD6E9-AC9D-48EE-BA8F-95BBAA33BBDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagementCatalogue.Application", "..\ProductManagementCatalogue.Application\ProductManagementCatalogue.Application.csproj", "{5CEE85D0-B55C-4E9D-A38B-CEF444125E1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagementCatalogue.UI", "..\ProductManagementCatalogue.UI\ProductManagementCatalogue.UI.csproj", "{38B73E63-1255-4096-BFB0-07E2204B603A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5CEE85D0-B55C-4E9D-A38B-CEF444125E1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CEE85D0-B55C-4E9D-A38B-CEF444125E1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CEE85D0-B55C-4E9D-A38B-CEF444125E1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B73E63-1255-4096-BFB0-07E2204B603A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B73E63-1255-4096-BFB0-07E2204B603A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B73E63-1255-4096-BFB0-07E2204B603A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B73E63-1255-4096-BFB0-07E2204B603A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

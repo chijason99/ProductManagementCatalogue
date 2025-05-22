@@ -1,7 +1,7 @@
 @ProductManagementCatalogue.API_HostAddress = http://localhost:5069
 
-GET {{ProductManagementCatalogue.API_HostAddress}}/products/
-Accept: application/json
+GET {{ProductManagementCatalogue.API_HostAddress}}/products/1
+Content-Type: application/json
 
 ###
 POST {{ProductManagementCatalogue.API_HostAddress}}/products

@@ -4,6 +4,7 @@ public class Result
 {
 	public bool IsSuccess { get; }
 	public bool IsFailure => !IsSuccess;
+
 	public IEnumerable<string> Errors { get; }
 
 	protected Result(bool isSuccess, IEnumerable<string> errors)

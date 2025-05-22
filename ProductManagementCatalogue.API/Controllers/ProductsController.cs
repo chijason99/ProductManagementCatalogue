@@ -14,7 +14,9 @@ public class ProductsController(IProductService productService) : ControllerBase
 	[HttpPost]
 	[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ProductDto))]
 	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IEnumerable<string>))]
-	public async Task<IActionResult> CreateAsync(CreateProductDto productDto, CancellationToken cancellationToken = default)
+	public async Task<IActionResult> CreateAsync(
+		[FromBody] CreateProductDto productDto, 
+		CancellationToken cancellationToken = default)
 	{
 		Result<ProductDto> createProductResult = await _productService.CreateProductAsync(productDto, cancellationToken);
 
@@ -35,5 +37,27 @@ public class ProductsController(IProductService productService) : ControllerBase
 			return BadRequest();
 
 		return Ok(getProductResult.Value);
+	}
+
+	[HttpPatch("{id:int}")]
+	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IEnumerable<string>))]
+	public async Task<IActionResult> UpdateAsync(
+		int id, 
+		[FromBody] UpdateProductDto updateProductDto, 
+		CancellationToken cancellationToken = default)
+	{
+		Result updateProductResult = await _productService.UpdateProductAsync(id, updateProductDto, cancellationToken);
+
+		if (updateProductResult.IsFailure)
+		{
+			if (updateProductResult.Errors.Any(err => err.Contains("Not Found")))
+				return NotFound();
+
+			return BadRequest();
+		}
+
+		return NoContent();
 	}
 }

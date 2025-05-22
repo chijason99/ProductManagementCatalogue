@@ -14,3 +14,16 @@ Accept: application/json
   "stock": 100,
   "isActive": true
 }
+
+###
+PATCH {{ProductManagementCatalogue.API_HostAddress}}/products/2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Updated Product Name",
+  "description": "Updated product description.",
+  "price": 29.99,
+  "stock": 50,
+  "isActive": false
+}

@@ -59,4 +59,24 @@ public class ProductService(IRepository<Product> productRepository, IUnitOfWork 
 
 		return Result<ProductDto>.Success(dto);
 	}
+
+	public async Task<Result> UpdateProductAsync(int id, UpdateProductDto updateProductDto, CancellationToken cancellationToken = default)
+	{
+		Product targetProduct = await _productRepository.GetByIdAsync(id, cancellationToken);
+
+		if (targetProduct is null)
+			return Result<ProductDto>.Failure($"Product not found");
+
+		targetProduct.UpdateDetails(
+			updateProductDto.Name,
+			updateProductDto.Description,
+			updateProductDto.Price,
+			updateProductDto.Stock,
+			updateProductDto.IsActive);
+
+		await _productRepository.UpdateAsync(targetProduct, cancellationToken);
+		await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+		return Result.Success();
+	}
 }

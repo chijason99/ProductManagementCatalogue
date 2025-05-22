@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagementCatalogue.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagementCatalogue.Infrastructure", "..\ProductManagementCatalogue.Infrastructure\ProductManagementCatalogue.Infrastructure.csproj", "{107D355A-F2AA-4FBF-8013-F57F0944F77C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagementCatalogue.API", "..\ProductManagementCatalogue.UI\ProductManagementCatalogue.API.csproj", "{3B8AD6E9-AC9D-48EE-BA8F-95BBAA33BBDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagementCatalogue.API", "..\ProductManagementCatalogue.API\ProductManagementCatalogue.API.csproj", "{3B8AD6E9-AC9D-48EE-BA8F-95BBAA33BBDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagementCatalogue.Application", "..\ProductManagementCatalogue.Application\ProductManagementCatalogue.Application.csproj", "{5CEE85D0-B55C-4E9D-A38B-CEF444125E1D}"
 EndProject

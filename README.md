@@ -67,6 +67,8 @@ API Project
   - Error handling and validation may need further refinement for production scenarios.
   - API documentation (e.g., Swagger/OpenAPI) is not included by default.
   - Product image upload and management are not included.
+  - The use of external mapping library (e.g. AutoMapper) for more reusable code to map entities into DTOs
+  - Can probably achiveve the server side table better with external library like Datatable.js
 
 ---
 
